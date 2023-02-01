@@ -18,8 +18,8 @@ export class AuthService {
     return this.userService.login(username, password).pipe(
       tap((res:any) => {
         this._isLoggedIn$.next(true)
-        localStorage.setItem('user', res.user)
-        localStorage.setItem('token', res.jwtToken)
+        localStorage.setItem('userId', res.data.id)
+        localStorage.setItem('token', res.data.token)
       })
     )
   }

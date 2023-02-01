@@ -59,7 +59,7 @@ export class UserService {
   }
 
   userLoggedIn() {
-    return localStorage.getItem('userId') || ''
+    return localStorage.getItem('userId') || undefined
   }
 
 }

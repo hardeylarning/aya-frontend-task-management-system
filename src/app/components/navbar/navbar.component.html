@@ -1,1 +1,4 @@
-<p>navbar works!</p>
+<div class="container-fluid text-center my-3">
+    <span class="h1">Task Management System</span>
+    <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger float-end" (click)="logout()">logout</button>
+</div>
