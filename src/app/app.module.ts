@@ -15,6 +15,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { LoginComponent } from './components/login/login.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
@@ -63,7 +64,8 @@ const routes: Routes = [
     TasksComponent,
     EditTaskComponent,
     LoginComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    NavbarComponent
   ],
 
   imports: [
