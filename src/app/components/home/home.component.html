@@ -1,5 +1,9 @@
 <div class="section">
-    <div class="container mx-5 text">
-      <p class="h2"> Welcome to Task Management System  where you can get add task and monitor the progress of your task. </p>
+    <div class="container-fluid">
+        <div *ngIf="!isLoggedIn()" class="row">
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <app-login></app-login>
+            </div>
+        </div>
   </div>
   </div>

@@ -24,7 +24,8 @@ export class AddUserComponent implements OnInit {
    let user = new User('', this.firstName, this.lastName, this.email, this.password)
     this.userService.addUser(user).subscribe({next: (data) =>{
         this.userService.setMessage("Congrats! you have been successfully registered.")
-        this.router.navigateByUrl('/home')
+        alert("Congrats! you have been successfully registered.")
+        // this.router.navigateByUrl('/home')
     }, 
     error: (err) => {
       console.log(err)

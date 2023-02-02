@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -16,15 +16,17 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { LoginComponent } from './components/login/login.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { EmailValidatorDirective } from './directive/email-validator.directive';
 
 
 
 
 const routes: Routes = [
+ 
   {
-    path: '',
-    redirectTo: '/tasks',
-    pathMatch: 'full'
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'tasks',
@@ -39,7 +41,7 @@ const routes: Routes = [
     component: EditTaskComponent
   },
   {
-    path: 'auth',
+    path: 'login',
     component: LoginComponent
   },
   {
@@ -50,6 +52,15 @@ const routes: Routes = [
     path: 'edit-user/:id',
     component: EditUserComponent
   },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent
+  },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  }
 ]
 
 @NgModule({
@@ -65,7 +76,8 @@ const routes: Routes = [
     EditTaskComponent,
     LoginComponent,
     ResetPasswordComponent,
-    NavbarComponent
+    NavbarComponent,
+    EmailValidatorDirective
   ],
 
   imports: [
@@ -75,7 +87,13 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -30,11 +30,11 @@ export class UserService {
   }
 
   addUser(user: User) {
-    return this.http.post<User>(this.BASE_URL +'/add', user)
+    return this.http.post<any>(this.BASE_URL +'/register', user)
   }
 
   updateUser(id:string, user: User) {
-    return this.http.put<User>(this.BASE_URL+'/'+id, user)
+    return this.http.put<any>(this.BASE_URL+'/'+id, user)
   }
 
   deleteUser(id:string) {

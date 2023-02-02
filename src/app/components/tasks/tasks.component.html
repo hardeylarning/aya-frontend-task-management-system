@@ -1,1 +1,38 @@
-<p>tasks works!</p>
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-md-4">
+      <app-add-task></app-add-task>
+    </div>
+    <div class="col-md">
+      <table class="table table-hover table-bordered caption-top">
+        <caption>List of tasks</caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Created At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td class="d-flex justify-content-between">
+              <a class="" [routerLink]="['/edit-task', 1]"><i class="bi-pencil-square"></i></a>
+              <span ><i class="bi-display text-success"></i></span>
+              <span><i class="bi-trash text-danger"></i></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+  
