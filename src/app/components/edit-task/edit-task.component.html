@@ -10,7 +10,6 @@
                 <div class="mb-3">
                     <label for="status">Task Status</label>
                     <select (change)="handleChange($event)"
-                    name="status"
                     formControlName="status"
                     class="form-select" id="status">
                     <option selected [value]="'created'">Created</option>

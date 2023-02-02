@@ -7,6 +7,7 @@ import { Task } from '../model/task';
 })
 export class TaskService {
   private BASE_URL = 'http://localhost:5000/api/v1/tasks'
+  private BASE_URL_ = 'https://tms-api-20kv.onrender.com/api/v1/tasks'
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +16,7 @@ export class TaskService {
   }
 
   getTask(id: string) {
-    return this.http.get<Task>(this.BASE_URL+'/'+id)
+    return this.http.get<any>(this.BASE_URL+'/'+id)
   }
 
   getTasks() {
@@ -27,7 +28,7 @@ export class TaskService {
   }
 
   deleteTask(id:string) {
-    return this.http.delete<void>(this.BASE_URL+'/'+id)
+    return this.http.delete<any>(this.BASE_URL+'/'+id)
   }
 
 

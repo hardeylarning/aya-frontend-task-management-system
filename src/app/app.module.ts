@@ -20,6 +20,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { EmailValidatorDirective } from './directive/email-validator.directive';
 import { AuthGuard } from './guards/auth.guard';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 
@@ -54,6 +55,10 @@ const routes: Routes = [
     component: ResetPasswordComponent
   },
   {
+    path: 'forgot',
+    component: ForgotPasswordComponent
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -78,7 +83,8 @@ const routes: Routes = [
     ResetPasswordComponent,
     NavbarComponent,
     EmailValidatorDirective,
-    ErrorPageComponent
+    ErrorPageComponent,
+    ForgotPasswordComponent
   ],
 
   imports: [

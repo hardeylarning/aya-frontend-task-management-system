@@ -25,17 +25,17 @@
         <tbody class="table-group-divider">
           <tr *ngFor="let task of tasks; let i = index">
             <th name="'task'" scope="row"> {{ i + 1 }} </th>
-            <td >{{ task.name.substring(0, 15) }}</td>
+            <td >{{ task.name }}</td>
             <td>{{ task.status }}</td>
             <td>{{ task.createdAt | date }}</td>
             <td>{{ task.updatedAt| date }}</td>
             <td class="d-flex justify-content-between">
               <a [routerLink]="['/edit-task', task.id]"><i class="bi-pencil-square text-primary"></i></a>
               <span data-bs-toggle="modal" [attr.data-bs-target]="'#data'+task.id"><i class="bi-display text-success"></i></span>
-              <span><i class="bi-trash text-danger"></i></span>
+              <span (click)="onDelete(task.id)"><i class="bi-trash text-danger"></i></span>
             </td>
 
-                <!-- View Modal -->
+          <!-- View Modal -->
          <div class="modal fade" id="data{{ task.id }}" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -61,41 +61,6 @@
             </div>
           </div>
         </div>
-
-                <!-- Update Modal -->
-         <div class="modal fade" id="edit{{ task.id }}" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="dataModalLabel">Update Task</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body text-center">
-                <form [formGroup]="form" (ngSubmit)="onSubmit()" >
-                  <div class="mb-3">
-                      <label for="name">Task Detail</label>
-                      <input type="text" required class="form-control" value="data.name" formControlName="name" />
-                  </div>
-                  <div class="mb-3">
-                      <label for="status">Task Status</label>
-                      <select (change)="handleChange($event)"
-                      name="status"
-                      formControlName="status"
-                      class="form-select" id="status">
-                      <option selected [value]="'created'">Created</option>
-                      <option [value]="'in progress'">In Progress</option>
-                      <option [value]="'completed'">Completed</option>
-                      </select>
-                  </div>
-                  <div class="text-center">
-                      <button type="submit" class="btn btn-success" [disabled]="form.invalid">Submit</button>
-                  </div>
-              </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
           </tr>
         </tbody>
       </table>

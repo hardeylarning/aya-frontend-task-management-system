@@ -24,7 +24,12 @@ export class EditTaskComponent implements OnInit {
     private taskService: TaskService,
     private userService: UserService,
     private router: Router
-  ) { }
+  ) {
+    this.form = fb.group({
+      name: [this.name],
+      status: [this.status]
+    })
+   }
 
   ngOnInit(): void {
     this.route.params.subscribe((res) => {
@@ -33,8 +38,11 @@ export class EditTaskComponent implements OnInit {
       console.log("ID: ", this.id);
       
       this.taskService.getTask(this.id).subscribe((data) => {
-        this.task = data;
-        console.log('Data', data);
+        this.task = data.data;
+        console.log('Data', this.task);
+
+        this.name = this.task.name
+        this.status = this.task.status
         
         this.form = this.fb.group({
           name: new FormControl(this.name),

@@ -1,4 +1,12 @@
-<div class="container-fluid text-center my-3">
-    <span class="h1">Task Management System</span>
-    <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger float-end" (click)="logout()">logout</button>
+<div class="container-fluid my-3">
+    <a routerLink="/home" class="h1 text-decoration-none">Home</a>
+    <div class="float-end">
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <a *ngIf="isLoggedIn()" routerLink="/tasks" class="btn btn-primary">All Tasks</a>
+            <a *ngIf="isLoggedIn()" routerLink="/tasks" class="btn btn-success">New Task</a>
+            <a *ngIf="!isLoggedIn()" routerLink="/add-user" class="btn btn-success">Register</a>
+            <a *ngIf="!isLoggedIn()" routerLink="/home" class="btn btn-primary">Login</a>
+            <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()">logout</button>
+          </div>
+    </div>
 </div>

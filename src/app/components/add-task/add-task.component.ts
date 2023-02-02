@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Task } from 'src/app/model/task';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
+import { TasksComponent } from '../tasks/tasks.component';
 
 @Component({
   selector: 'app-add-task',
@@ -39,6 +40,7 @@ export class AddTaskComponent implements OnInit {
       
       this.userService.setMessage("Task has been added successfully.")
       alert("Task has been added successfully.")
+      window.location.reload();
       this.router.navigateByUrl('/tasks')
   }, 
   error: (err) => {

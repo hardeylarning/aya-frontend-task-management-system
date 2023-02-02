@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -6,10 +8,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
+  email:string = ''
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  reset() {
+    this.userService.getUserByEmail(this.email).subscribe({
+      next: data => {
+        console.log("Data ", data.status);
+        
+        if (data.status === "success") {
+          localStorage.setItem('email', this.email)
+          this.router.navigateByUrl('/forgot')
+        }
+        else {
+          alert("Incorrect user email")
+        }
+      },
+      error: err => {
+        console.log(err);
+        
+      }
+    })
   }
 
 }

@@ -24,6 +24,13 @@ export class UserService {
   getUser(id: string) {
     return this.http.get<User>(this.BASE_URL+'/'+id)
   }
+  getUserByEmail(email: string) {
+    return this.http.get<any>(this.BASE_URL+'/get-by-email/'+email)
+  }
+
+  userResetPassword(email: string, password: string) {
+    return this.http.put<any>(`${this.BASE_URL}/reset-password/${email}`, {password})
+  }
 
   getUsers() {
     return this.http.get<User[]>(this.BASE_URL)

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md">
             <div class="row">
-                <div class="col-md-6 p-3">
+                <div class="offset-md-3 col-md-6 p-3">
                     <h3 >Registration Form</h3>
                     <form #form="ngForm" (ngSubmit)="onSubmit()" >
                         <div class="mb-3">
@@ -24,7 +24,7 @@
                         <div class="text-center">
                             <button type="submit" class="btn btn-success" [disabled]="form.invalid">Submit</button>
                         </div>
-                        <div class="mt-3"><a routerLink="/home" class="nav-link"> Are you already registered? kindly click here to login</a></div>
+                        <div class="mt-3"><a routerLink="/home" class="text-primary nav-link"> Are you already registered? kindly click here to login</a></div>
                     </form>
                 </div>
             </div>
