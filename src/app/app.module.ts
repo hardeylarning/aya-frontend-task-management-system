@@ -18,6 +18,8 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { EmailValidatorDirective } from './directive/email-validator.directive';
+import { AuthGuard } from './guards/auth.guard';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 
 
@@ -30,19 +32,13 @@ const routes: Routes = [
   },
   {
     path: 'tasks',
-    component: TasksComponent
+    component: TasksComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'add-task',
-    component: AddTaskComponent
-  },
-  {
-    path: 'edit-task',
-    component: EditTaskComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
+    path: 'edit-task/:id',
+    component: EditTaskComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'add-user',
@@ -50,7 +46,8 @@ const routes: Routes = [
   },
   {
     path: 'edit-user/:id',
-    component: EditUserComponent
+    component: EditUserComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'reset-password',
@@ -60,7 +57,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
-  }
+  },
+  {
+    path: '**', component: ErrorPageComponent
+  },
 ]
 
 @NgModule({
@@ -77,7 +77,8 @@ const routes: Routes = [
     LoginComponent,
     ResetPasswordComponent,
     NavbarComponent,
-    EmailValidatorDirective
+    EmailValidatorDirective,
+    ErrorPageComponent
   ],
 
   imports: [

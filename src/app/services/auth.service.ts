@@ -18,7 +18,7 @@ export class AuthService {
     return this.userService.login(username, password).pipe(
       tap((res:any) => {
         this._isLoggedIn$.next(true)
-        localStorage.setItem('userId', res.data.id)
+        localStorage.setItem('userId', res.data.userId)
         localStorage.setItem('token', res.data.token)
       })
     )

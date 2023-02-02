@@ -1,1 +1,27 @@
-<p>edit-task works!</p>
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-4">
+            <h1 class="text-center">Update Task</h1>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+                <div class="mb-3">
+                    <label for="name">Task Detail</label>
+                    <input type="text" required class="form-control" formControlName="name" />
+                </div>
+                <div class="mb-3">
+                    <label for="status">Task Status</label>
+                    <select (change)="handleChange($event)"
+                    name="status"
+                    formControlName="status"
+                    class="form-select" id="status">
+                    <option selected [value]="'created'">Created</option>
+                    <option [value]="'in progress'">In Progress</option>
+                    <option [value]="'completed'">Completed</option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success" [disabled]="form.invalid">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -11,7 +11,7 @@ export class TaskService {
   constructor(private http: HttpClient) { }
 
   addTask(task: Task) {
-    return this.http.post<any>(this.BASE_URL, task)
+    return this.http.post<any>(this.BASE_URL+ '/add', task)
   }
 
   getTask(id: string) {
@@ -19,7 +19,7 @@ export class TaskService {
   }
 
   getTasks() {
-    return this.http.get<Task[]>(this.BASE_URL+'user-tasks/all')
+    return this.http.get<any>(this.BASE_URL+'/user-tasks/all')
   }
 
   updateTask(id:string, name: string, status: string) {

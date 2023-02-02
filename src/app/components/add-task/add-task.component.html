@@ -1,14 +1,14 @@
     <h3 class="text-center">Add New Task</h3>
     <form #form="ngForm" (ngSubmit)="onSubmit()" >
         <div class="mb-3">
-            <label for="firstName">task detail</label>
+            <label for="firstName">Task Detail</label>
             <input type="text" required class="form-control" name="name" [(ngModel)]="name" />
         </div>
         <div class="mb-3">
             <label for="status">Task Status</label>
             <select (change)="handleChange($event)"
             name="status"
-            class="form-control" id="status">
+            class="form-select" id="status">
             <option selected [value]="'created'">Created</option>
             <option [value]="'in progress'">In Progress</option>
             <option [value]="'completed'">Completed</option>

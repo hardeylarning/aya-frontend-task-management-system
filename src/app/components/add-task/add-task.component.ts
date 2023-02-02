@@ -23,7 +23,6 @@ export class AddTaskComponent implements OnInit {
 
 
   handleChange(index: any) {
-    // console.log('Index: ', index.target.value);
     this.status = index.target.value
   }
 
@@ -33,6 +32,11 @@ export class AddTaskComponent implements OnInit {
     const task: Task = new Task('', this.name, this.status, false, userId, '', '')
 
     this.taskService.addTask(task).subscribe({next: (data) =>{
+      console.log('Response: ', data);
+
+      console.log('User ID: ', userId);
+      
+      
       this.userService.setMessage("Task has been added successfully.")
       alert("Task has been added successfully.")
       this.router.navigateByUrl('/tasks')
