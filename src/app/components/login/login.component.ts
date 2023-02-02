@@ -10,8 +10,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  responseData = null
-
   email:string = ''
   password:string = ''
 
@@ -26,11 +24,6 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.email, this.password).subscribe((res: any) => {
       if (res != null) {
-        this.responseData = res
-        console.log('login: ', res);
-        
-        // localStorage.setItem("userId", res.data.id)
-        // localStorage.setItem('token', res.token) 
         this.router.navigate(['/home'])
       }
     })

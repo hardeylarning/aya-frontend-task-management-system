@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Task } from 'src/app/model/task';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
-import { TasksComponent } from '../tasks/tasks.component';
 
 @Component({
   selector: 'app-add-task',
@@ -33,11 +32,6 @@ export class AddTaskComponent implements OnInit {
     const task: Task = new Task('', this.name, this.status, false, userId, '', '')
 
     this.taskService.addTask(task).subscribe({next: (data) =>{
-      console.log('Response: ', data);
-
-      console.log('User ID: ', userId);
-      
-      
       this.userService.setMessage("Task has been added successfully.")
       alert("Task has been added successfully.")
       window.location.reload();

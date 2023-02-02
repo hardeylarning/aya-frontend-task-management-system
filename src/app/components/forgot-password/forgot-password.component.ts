@@ -27,8 +27,6 @@ export class ForgotPasswordComponent implements OnInit {
 
     this.userService.userResetPassword(this.email, this.password).subscribe({
       next: data => {
-        console.log("Data ", data.status);
-        
         if (data.status === "success") {
           localStorage.removeItem('email')
           alert("Password has been reset successfully, you can now login")

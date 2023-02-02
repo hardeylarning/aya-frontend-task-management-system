@@ -18,7 +18,6 @@ export class ResetPasswordComponent implements OnInit {
   reset() {
     this.userService.getUserByEmail(this.email).subscribe({
       next: data => {
-        console.log("Data ", data.status);
         
         if (data.status === "success") {
           localStorage.setItem('email', this.email)
