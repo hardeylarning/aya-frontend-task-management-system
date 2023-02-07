@@ -6,8 +6,8 @@ import { Task } from '../model/task';
   providedIn: 'root'
 })
 export class TaskService {
-  private BASE_URL_ = 'http://localhost:5000/api/v1/tasks'
-  private BASE_URL = 'https://tms-api-20kv.onrender.com/api/v1/tasks'
+  private BASE_URL = 'http://localhost:5000/api/v1/tasks'
+  private BASE_URL_ = 'https://tms-api-20kv.onrender.com/api/v1/tasks'
 
   constructor(private http: HttpClient) { }
 

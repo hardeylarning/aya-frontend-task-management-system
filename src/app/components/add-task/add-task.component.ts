@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { Task } from 'src/app/model/task';
+import { SweetAlertService } from 'src/app/services/sweet-alert.service';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-task',
@@ -11,11 +14,22 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AddTaskComponent implements OnInit {
 
+  isLoading: Boolean = false
+  readonly loading$ = new BehaviorSubject<boolean>(false);
+
   constructor(private userService: UserService, 
               private taskService: TaskService,
+              private sweetAlertService: SweetAlertService,
               private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  tinyAlert(message: string) {
+    Swal.fire(message);
+  }
+  successNotification(message: string) {
+    Swal.fire('Hi', message, 'success');
   }
 
    status: any;
@@ -34,16 +48,22 @@ export class AddTaskComponent implements OnInit {
     const task: Task = new Task('', this.name, this.status, false, userId, this.startDate, this.endDate)
 
     this.taskService.addTask(task).subscribe({next: (data) =>{
-      this.userService.setMessage("Task has been added successfully.")
-      // console.log("Task: ", data.data);
-      
-      alert("Task has been added successfully.")
+      this.loading$.next(true)
+      if(data.status === 'success'){
+        this.loading$.next(false)
+        this.successNotification("Task has been added successfully")
+      }
+      else {
+        this.isLoading = false
+        this.tinyAlert(data.message)
+      }
       window.location.reload();
-      this.router.navigateByUrl('/tasks')
+      // this.router.navigateByUrl('/tasks')
   }, 
   error: (err) => {
+    this.isLoading = false
     console.log(err)
-    this.userService.setMessage("Network Error!")
+    this.tinyAlert("Network Error!")
   }
   })
     

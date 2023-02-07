@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from 'src/app/model/task';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-task',
@@ -58,6 +59,13 @@ export class EditTaskComponent implements OnInit {
     });
   }
 
+  tinyAlert(message: string) {
+    Swal.fire(message);
+  }
+  successNotification(message: string) {
+    Swal.fire('Hi', message, 'success');
+  }
+
   handleChange(index: any) {
     this.status = index.target.value
   }
@@ -66,9 +74,18 @@ export class EditTaskComponent implements OnInit {
     this.taskService
       .updateTask(this.id, this.form.value.name, this.form.value.status, this.form.value.startDate, this.form.value.endDate)
       .subscribe((res) => {
-        this.userService.setMessage(res.message);
-        alert("Task has been updated successfully!")
-        this.router.navigateByUrl('/tasks');
+        console.log("Res: ", res);
+        
+        if(res.status === 'success') {
+          this.successNotification("Task has been updated successfully!")
+          this.router.navigateByUrl('/tasks');
+        }
+        else {
+          this.tinyAlert(res.message)
+          console.log();
+          
+        }
+        
       });
   }
 

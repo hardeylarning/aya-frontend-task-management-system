@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Task } from 'src/app/model/task';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tasks',
@@ -19,10 +20,16 @@ export class TasksComponent implements OnInit {
     private router: Router
   ) {}
 
+  tinyAlert(message: string) {
+    Swal.fire(message);
+  }
+  successNotification(message: string) {
+    Swal.fire('Hi', message, 'success');
+  }
+
  
 
   ngOnInit(): void {
-    this.message = this.userService.getMessage();
     this.taskService.getTasks().subscribe({
       next: (res) => {
         this.tasks = res.data;
@@ -37,9 +44,16 @@ export class TasksComponent implements OnInit {
   onDelete(id: string) {
     this.taskService.deleteTask(id).subscribe({
       next: data => {
-        alert("task has been deleted successfully.")
-        this.ngOnInit();
-        this.router.navigateByUrl('/tasks');
+        if(data.status === 'success') {
+          this.successNotification("task has been deleted successfully.")
+          this.ngOnInit();
+        }
+
+        else {
+          this.tinyAlert(data.message)
+        }
+        
+        // this.router.navigateByUrl('/tasks');
       }
     })
   }

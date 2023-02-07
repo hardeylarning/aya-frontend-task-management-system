@@ -23,6 +23,7 @@
             <input type="date" required class="form-control" name="endDate" [(ngModel)]="endDate" />
         </div>
         <div class="text-center">
+            <p *ngIf="loading$ | async" class="bg-dark text-white">Loading...</p>
             <button type="submit" class="btn btn-success" [disabled]="form.invalid">Submit</button>
         </div>
     </form>
