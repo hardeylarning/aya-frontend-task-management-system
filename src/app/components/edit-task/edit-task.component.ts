@@ -37,7 +37,7 @@ export class EditTaskComponent implements OnInit {
   
       this.taskService.getTask(this.id).subscribe((data) => {
         this.task = data.data;
-        console.log('Data', this.task);
+        // console.log('Data', this.task);
 
         this.name = this.task.name
         this.status = this.task.status
