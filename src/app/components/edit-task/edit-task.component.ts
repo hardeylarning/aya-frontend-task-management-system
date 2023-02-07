@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { Task } from 'src/app/model/task';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
@@ -12,6 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./edit-task.component.scss']
 })
 export class EditTaskComponent implements OnInit {
+  readonly loading$ = new BehaviorSubject<boolean>(false);
   id: any;
   task!: Task
   form!: FormGroup;
@@ -25,7 +27,6 @@ export class EditTaskComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private taskService: TaskService,
-    private userService: UserService,
     private router: Router
   ) {
     this.form = fb.group({
@@ -71,16 +72,19 @@ export class EditTaskComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading$.next(true)
     this.taskService
       .updateTask(this.id, this.form.value.name, this.form.value.status, this.form.value.startDate, this.form.value.endDate)
       .subscribe((res) => {
-        console.log("Res: ", res);
+        // console.log("Res: ", res);
         
         if(res.status === 'success') {
+          this.loading$.next(false)
           this.successNotification("Task has been updated successfully!")
           this.router.navigateByUrl('/tasks');
         }
         else {
+          this.loading$.next(false)
           this.tinyAlert(res.message)
           console.log();
           

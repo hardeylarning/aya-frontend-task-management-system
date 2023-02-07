@@ -13,5 +13,5 @@
         </div>
     </div>
    
-    <p class="me-5" *ngIf="isLoggedIn()">Welcome, <span class="h5 fw-bold">{{ userProfile }}</span></p>
+    <p class="me-5" *ngIf="isLoggedIn()">Welcome, <span class="h5 fw-bold">{{ userProfile$ | async }}</span></p>
 </div>

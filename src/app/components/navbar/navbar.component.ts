@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,13 +10,12 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
-  userProfile: string | null = null
+  userProfile$ = new BehaviorSubject<string>('');
 
   constructor(private router: Router, private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
-      this.userProfile = localStorage.getItem('userName');
+      this.userProfile$.next(localStorage.getItem('userName') || '')
   }
 
   logout() {
