@@ -26,6 +26,9 @@ export class LoginComponent implements OnInit {
       if (res != null) {
         this.router.navigate(['/home'])
       }
+      else {
+        alert("Network Error! Kindly check your network issue")
+      }
     })
   }
 
