@@ -35,7 +35,7 @@ export class AddTaskComponent implements OnInit {
 
     this.taskService.addTask(task).subscribe({next: (data) =>{
       this.userService.setMessage("Task has been added successfully.")
-      console.log("Task: ", data.data);
+      // console.log("Task: ", data.data);
       
       alert("Task has been added successfully.")
       window.location.reload();
