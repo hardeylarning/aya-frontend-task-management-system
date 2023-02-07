@@ -25,7 +25,8 @@
           </div>
 
           <div class="text-center">
-            <button [disabled]="loginForm.invalid" (click)="login()" type="submit" class="btn btn-primary">Sign in</button>
+            <button *ngIf="loading$ | async" type="button" class="btn btn-primary">loading...</button>
+            <button *ngIf="!(loading$ | async)" [disabled]="loginForm.invalid" (click)="login()" type="submit" class="btn btn-primary">Sign in</button>
             <a routerLink="/add-user" class="btn btn-success ms-2">Register</a>
           </div>
 
