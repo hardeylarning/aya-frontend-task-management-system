@@ -19,6 +19,7 @@ export class AuthService {
       tap((res:any) => {
         this._isLoggedIn$.next(true)
         localStorage.setItem('userId', res.data.userId)
+        localStorage.setItem('userName', res.data.firstname + " " +res.data.lastname)
         localStorage.setItem('token', res.data.token)
       })
     )

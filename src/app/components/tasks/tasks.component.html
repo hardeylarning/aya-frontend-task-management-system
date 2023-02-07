@@ -17,8 +17,8 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Status</th>
-            <th scope="col">Created At</th>
-            <th scope="col">Updated At</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -27,8 +27,8 @@
             <th name="'task'" scope="row"> {{ i + 1 }} </th>
             <td >{{ task.name }}</td>
             <td>{{ task.status }}</td>
-            <td>{{ task.createdAt | date }}</td>
-            <td>{{ task.updatedAt| date }}</td>
+            <td>{{ task.startDate | date }}</td>
+            <td>{{ task.endDate| date }}</td>
             <td class="d-flex justify-content-between">
               <a [routerLink]="['/edit-task', task.id]"><i class="bi-pencil-square text-primary"></i></a>
               <span data-bs-toggle="modal" [attr.data-bs-target]="'#data'+task.id"><i class="bi-display text-success"></i></span>
@@ -48,10 +48,10 @@
                 <hr class="mt-5">
                 <div class="d-flex justify-content-between">
                   <div class="badge bg-success p-3 display-2">
-                    Created at: <span class="">{{ task.createdAt | date}}</span>
+                    Start Date: <span class="">{{ task.startDate | date}}</span>
                   </div>
                   <div class="badge bg-secondary p-3 display-2">
-                    Updated at: <span class="">{{ task.updatedAt | date}}</span>
+                    End Date: <span class="">{{ task.endDate | date}}</span>
                   </div> 
                 </div>
               </div>

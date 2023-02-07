@@ -10,9 +10,12 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
+  userProfile: string | null = null
+
   constructor(private router: Router, private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
+      this.userProfile = localStorage.getItem('userName');
   }
 
   logout() {

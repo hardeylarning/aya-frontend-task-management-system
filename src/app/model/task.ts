@@ -5,7 +5,7 @@ export class Task {
         public status: string,
         public isCompleted: boolean,
         public userId: string,
-        public createdAt: string,
-        public updatedAt: string
+        public startDate: string,
+        public endDate: string
     ){}
 }

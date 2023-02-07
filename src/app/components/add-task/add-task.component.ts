@@ -20,6 +20,8 @@ export class AddTaskComponent implements OnInit {
 
    status: any;
    name: string = ''
+   startDate: any;
+   endDate: any
 
 
   handleChange(index: any) {
@@ -29,10 +31,12 @@ export class AddTaskComponent implements OnInit {
   onSubmit() {
     const userId = this.userService.userLoggedIn() || ''
 
-    const task: Task = new Task('', this.name, this.status, false, userId, '', '')
+    const task: Task = new Task('', this.name, this.status, false, userId, this.startDate, this.endDate)
 
     this.taskService.addTask(task).subscribe({next: (data) =>{
       this.userService.setMessage("Task has been added successfully.")
+      console.log("Task: ", data.data);
+      
       alert("Task has been added successfully.")
       window.location.reload();
       this.router.navigateByUrl('/tasks')

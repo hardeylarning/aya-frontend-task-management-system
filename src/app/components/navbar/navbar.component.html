@@ -1,12 +1,17 @@
 <div class="container-fluid my-3">
-    <a routerLink="/home" class="h1 text-decoration-none">Home</a>
-    <div class="float-end">
-        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <a *ngIf="isLoggedIn()" routerLink="/tasks" class="btn btn-primary">All Tasks</a>
-            <a *ngIf="isLoggedIn()" routerLink="/tasks" class="btn btn-success">New Task</a>
-            <a *ngIf="!isLoggedIn()" routerLink="/add-user" class="btn btn-success">Register</a>
-            <a *ngIf="!isLoggedIn()" routerLink="/home" class="btn btn-primary">Login</a>
-            <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()">logout</button>
-          </div>
+    <div class="container-fluid">
+        <a routerLink="/home" class="h1 text-decoration-none">Home</a>
+        <div class="float-end">
+            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                
+                <a *ngIf="isLoggedIn()" routerLink="/tasks" class="btn btn-primary">All Tasks</a>
+                <a *ngIf="isLoggedIn()" routerLink="/tasks" class="btn btn-success">New Task</a>
+                <a *ngIf="!isLoggedIn()" routerLink="/add-user" class="btn btn-success">Register</a>
+                <a *ngIf="!isLoggedIn()" routerLink="/home" class="btn btn-primary">Login</a>
+                <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()">logout</button>
+              </div>
+        </div>
     </div>
+   
+    <p class="me-5" *ngIf="isLoggedIn()">Welcome, <span class="h5 fw-bold">{{ userProfile }}</span></p>
 </div>

@@ -14,6 +14,14 @@
             <option [value]="'completed'">Completed</option>
             </select>
         </div>
+        <div class="mb-3">
+            <label for="startDate">Start Date</label>
+            <input type="date" required class="form-control" name="startDate" [(ngModel)]="startDate" />
+        </div>
+        <div class="mb-3">
+            <label for="endDate">End Date</label>
+            <input type="date" required class="form-control" name="endDate" [(ngModel)]="endDate" />
+        </div>
         <div class="text-center">
             <button type="submit" class="btn btn-success" [disabled]="form.invalid">Submit</button>
         </div>
