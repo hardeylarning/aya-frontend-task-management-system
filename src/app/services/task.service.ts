@@ -23,8 +23,8 @@ export class TaskService {
     return this.http.get<any>(this.BASE_URL+'/user-tasks/all')
   }
 
-  updateTask(id:string, name: string, status: string) {
-    return this.http.put<any>(this.BASE_URL+'/'+id, {name: name, status: status})
+  updateTask(id:string, name: string, status: string, startDate:string, endDate:string) {
+    return this.http.put<any>(this.BASE_URL+'/'+id, {name: name, status: status, startDate: startDate, endDate: endDate})
   }
 
   deleteTask(id:string) {

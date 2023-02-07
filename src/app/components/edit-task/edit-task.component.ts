@@ -16,6 +16,8 @@ export class EditTaskComponent implements OnInit {
   form!: FormGroup;
   name: string = ''
   status: string = ''
+  startDate: string = ''
+  endDate: string = ''
 
 
   constructor(
@@ -27,7 +29,9 @@ export class EditTaskComponent implements OnInit {
   ) {
     this.form = fb.group({
       name: [this.name],
-      status: [this.status]
+      status: [this.status],
+      startDate: [this.startDate],
+      endDate: [this.endDate],
     })
    }
 
@@ -41,10 +45,14 @@ export class EditTaskComponent implements OnInit {
 
         this.name = this.task.name
         this.status = this.task.status
+        this.startDate = this.task.startDate
+        this.endDate = this.task.endDate
         
         this.form = this.fb.group({
           name: new FormControl(this.name),
-          status: new FormControl(this.status)
+          status: new FormControl(this.status),
+          startDate: new FormControl(this.startDate),
+          endDate: new FormControl(this.endDate)
         });
       });
     });
@@ -56,7 +64,7 @@ export class EditTaskComponent implements OnInit {
 
   onSubmit() {
     this.taskService
-      .updateTask(this.id, this.form.value.name, this.form.value.status)
+      .updateTask(this.id, this.form.value.name, this.form.value.status, this.form.value.startDate, this.form.value.endDate)
       .subscribe((res) => {
         this.userService.setMessage(res.message);
         alert("Task has been updated successfully!")
